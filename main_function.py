@@ -309,29 +309,36 @@ def main():
                                 RandSpatialCropd(keys=['image1', 'image2'], roi_size=(64,64,64), random_size=False),
                                 EnsureTyped(keys=['image1', 'image2'])])
 
+    to_save=[]
+    to_save1=[]
+    lab=[]
+    final_f1=[]
+    final_target=[]
+    final_predicted=[]
+    val_f1=[]
+    val_target=[]
+    val_predicted=[]
+
+    for i in range(0,5): 
+        train_dataset=CustomDataset_train(transforms,augmentation_transforms)
+        test_dataset=CustomDataset_test(val_transforms)
+        val_dataset=CustomDataset_val(val_transforms)
     
     
-    train_dataset=CustomDataset_train(transforms,augmentation_transforms)
-    test_dataset=CustomDataset_test(val_transforms)
-    val_dataset=CustomDataset_val(val_transforms)
-
-
-    train_loader = torch.utils.data.DataLoader(
-            train_dataset,
-            batch_size=16, shuffle=True)
-
-    val_loader = torch.utils.data.DataLoader(
-            val_dataset,
-            batch_size=1, shuffle=True)
-
-    test_loader = torch.utils.data.DataLoader(
-            test_dataset,
-           batch_size=1, shuffle=True)
-
+        train_loader = torch.utils.data.DataLoader(
+                train_dataset,
+                batch_size=16, shuffle=True)
     
+        val_loader = torch.utils.data.DataLoader(
+                val_dataset,
+                batch_size=1, shuffle=True)
     
-    train_eval(train_loader,val_loader)
-    test(test_loader)
+        test_loader = torch.utils.data.DataLoader(
+                test_dataset,
+               batch_size=1, shuffle=True)
+    
+        train_eval(train_loader,val_loader)
+        test(val_loader,test_loader,i+1,val_f1,val_target,val_predicted,final_f1,final_target,final_predicted,to_save,to_save1,lab)
     
 if __name__ == "__main__":
     main()
