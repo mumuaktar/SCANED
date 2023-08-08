@@ -224,7 +224,6 @@ class ResNet(nn.Module):
         x=self.fc1(x)         ######rather than using the segmentation block, we added two fully connected layer here for the classification purpose
         x=self.bn11(x)
         x=self.relu1(x)
-                                #x=self.dr1(x)
         x=self.fc(x)   
         return x
 
