@@ -189,7 +189,7 @@ def test(val_loader,test_loader,fold,val_f1,val_target,val_predicted,final_f1,fi
     from sklearn import metrics
     from sklearn.metrics import roc_curve, auc
     #val_roc_auc = roc_auc_score(all_targets1, all_predictions1,multi_class='ovr')
-    fpr, tpr, th = metrics.roc_curve(all_targets1, all_predictions1,pos_label=1)
+    fpr, tpr, th = metrics.roc_curve(all_targets1, all_predictions1)
     val_roc_auc = auc(fpr, tpr)
     print('val AUC:',val_roc_auc)    
     
@@ -465,7 +465,7 @@ def test(val_loader,test_loader,fold,val_f1,val_target,val_predicted,final_f1,fi
               
 
     # print(voted_classes)
-    fpr, tpr, th = metrics.roc_curve(all_targets2, all_predictions2,pos_label=1)
+    fpr, tpr, th = metrics.roc_curve(all_targets2, all_predictions2)
     test_roc_auc = auc(fpr, tpr)
     print('test AUC:',test_roc_auc) 
    
