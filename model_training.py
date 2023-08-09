@@ -129,7 +129,7 @@ def train_eval(train_loader,val_loader,fold):
         #print( 'train_losses:',train_losses)    
         np.save('training_losst.npy',train_losses)
         #train_roc_auc = roc_auc_score(all_targets, all_predictions,multi_class='ovr')
-        fpr, tpr, th = metrics.roc_curve(all_targets, all_predictions,pos_label=1)
+        fpr, tpr, th = metrics.roc_curve(all_targets, all_predictions)
         train_roc_auc = auc(fpr, tpr)
         
 
@@ -166,7 +166,7 @@ def train_eval(train_loader,val_loader,fold):
 
         model.train() 
         #val_roc_auc = roc_auc_score(all_targets1, all_predictions1,multi_class='ovr')
-        fpr, tpr, th = metrics.roc_curve(all_targets1, all_predictions1,pos_label=1)
+        fpr, tpr, th = metrics.roc_curve(all_targets1, all_predictions1)
         val_roc_auc = auc(fpr, tpr)
         print('validation AUC:',val_roc_auc)    
         
